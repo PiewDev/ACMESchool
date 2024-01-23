@@ -1,21 +1,21 @@
 using Application.Data;
 using Domain.Primitives;
 
-namespace Infrastructure.Persistence;
+namespace Infrastructure.Common.Persistence;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWork
 {
     private readonly IPublisher _publisher;
 
-    public ApplicationDbContext(DbContextOptions options, IPublisher publisher) : base (options)
+    public ApplicationDbContext(DbContextOptions options, IPublisher publisher) : base(options)
     {
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
     }
 
-  
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-       modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

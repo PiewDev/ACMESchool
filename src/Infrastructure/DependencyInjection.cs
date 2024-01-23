@@ -1,8 +1,9 @@
 using Application.Data;
 using Domain.Primitives;
-using Infrastructure.Persistence;
+using Infrastructure.Common.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Students;
 
 namespace Infrastructure;
 
@@ -11,6 +12,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddPersistence(configuration);
+        services.AddStudentInfraestructure(configuration);
         return services;
     }
 
