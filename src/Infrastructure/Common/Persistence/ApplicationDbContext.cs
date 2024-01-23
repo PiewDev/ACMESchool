@@ -1,5 +1,6 @@
 using Application.Data;
 using Domain.Primitives;
+using Domain.Students;
 
 namespace Infrastructure.Common.Persistence;
 
@@ -7,6 +8,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 {
     private readonly IPublisher _publisher;
 
+    public DbSet<Student> Students {get; set;}
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseInMemoryDatabase("ACMEMemoryDB");
+    }
     public ApplicationDbContext(DbContextOptions options, IPublisher publisher) : base(options)
     {
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));

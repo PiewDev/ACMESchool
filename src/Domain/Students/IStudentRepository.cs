@@ -7,4 +7,5 @@ using System.Threading.Tasks;
 namespace Domain.Students;
 public interface IStudentRepository
 {
+    void Add(Student student);
 }

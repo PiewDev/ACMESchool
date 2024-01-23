@@ -19,8 +19,7 @@ public class CreateStudentTest
     public async Task HandleCreateStudent_WhenAllDataIsValid_ShouldReturnStudentId()
     {
         // Arrange
-
-        CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "640434323", "Country", "Line1", "Line2", "City", "State", "ZipCode");
+        CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "342-5787327", "Country", "Line1", "Line2", "City", "State", "ZipCode");
 
         // Act
         var result = await _handler.Handle(command, default);
@@ -28,5 +27,37 @@ public class CreateStudentTest
         // Assert
         result.IsError.Should().BeFalse();
         result.Value.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task HandleCreateStudent_WhenPhoneNumberHasBadFormat_ShouldReturnValidationError()
+    {
+
+        //Arrange
+        CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "1213", "Country", "Line1", "Line2", "City", "State", "ZipCode");
+
+        //Act
+        var result = await _handler.Handle(command, default);
+
+        //Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.Validation);
+        result.FirstError.Code.Should().Be(Errors.Student.PhoneNumberWithBadFormat.Code);
+        result.FirstError.Description.Should().Be(Errors.Student.PhoneNumberWithBadFormat.Description);
+    }
+    [Fact]
+    public async Task HandleCreateStudent_WhenAddressFieldsAreNullOrEmpty_ShouldReturnValidationError()
+    {
+        // Arrange
+        CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "123-4567890", "", "Line1", "Line2", "City", "State", "ZipCode");
+
+        // Act
+        var result = await _handler.Handle(command, default);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.Validation);
+        result.FirstError.Code.Should().Be(Errors.Student.AddressWithBadFormat.Code);
+        result.FirstError.Description.Should().Be(Errors.Student.AddressWithBadFormat.Description);
     }
 }

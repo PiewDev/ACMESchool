@@ -21,9 +21,9 @@ public partial record Address
 
     public static Address? Create(string country, string line1, string line2, string city, string state, string zipCode)
     {
-        if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(line1) ||
-            string.IsNullOrEmpty(line2) || string.IsNullOrEmpty(city) ||
-            string.IsNullOrEmpty(state) || string.IsNullOrEmpty(zipCode))
+        if (string.IsNullOrWhiteSpace(country) || string.IsNullOrWhiteSpace(line1) ||
+            string.IsNullOrWhiteSpace(line2) || string.IsNullOrWhiteSpace(city) ||
+            string.IsNullOrWhiteSpace(state) || string.IsNullOrWhiteSpace(zipCode))
         {
             return null;
         }
