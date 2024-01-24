@@ -8,10 +8,10 @@ public static partial class Errors
     public static class Student
     {
         public static Error PhoneNumberWithBadFormat =>
-            Error.Validation("Customer.PhoneNumber", "Phone number has not valid format.");
+            Error.Validation("Student.PhoneNumber", "Phone number has not valid format.");
 
         public static Error AddressWithBadFormat =>
-            Error.Validation("Customer.Address", "Address is not valid.");
+            Error.Validation("Student.Address", "Address is not valid.");
     }
 
 }

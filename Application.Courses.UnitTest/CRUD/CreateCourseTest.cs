@@ -4,8 +4,10 @@ using Domain.Courses;
 using Domain.Primitives;
 using Domain.Students;
 using Domain.ValueObjects;
+using ErrorOr;
 using Moq;
 using System.Xml.Linq;
+using Errors = Domain.Courses.Errors;
 
 namespace Application.Courses.UnitTests.CRUD;
 
@@ -24,7 +26,7 @@ public class CreateCourseTest
     [Fact]
     public async Task CreateCourse_WithValidData_ShouldReturnCourseId()
     {
-
+        // Arrange   
         var createCourseCommand = new CreateCourseCommand(
             "Introduction to DDD",
             50,
@@ -41,7 +43,27 @@ public class CreateCourseTest
     }
 
     [Fact]
-    public async Task CreateCourse_WithInvalidData_ShouldReturnValidationError()
+    public async Task CreateCourse_WithInvalidCourseDuration_ShouldReturnValidationError()
+    {
+        // Arrange       
+        CreateCourseCommand createCourseCommand = new(
+            "Introduction to DDD",
+            50,
+            new Money(100, CurrencyCode.ARS),
+            DateTime.Now.AddDays(30),
+            DateTime.Now.AddDays(20));
+
+        // Act
+        var result = await _handler.Handle(createCourseCommand, default);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.Validation);
+        result.FirstError.Code.Should().Be(Errors.Courses.CourseDurationInvalid.Code);
+        result.FirstError.Description.Should().Be(Errors.Courses.CourseDurationInvalid.Description);
+    }
+    [Fact]
+    public async Task CreateCourse_WithInvalidMaxStudents_ShouldReturnValidationError()
     {
         // Arrange
         var courseRepositoryMock = new Mock<ICourseRepository>();
@@ -50,16 +72,18 @@ public class CreateCourseTest
 
         CreateCourseCommand createCourseCommand = new(
             "Introduction to DDD",
-            50,
+            0,
             new Money(100, CurrencyCode.ARS),
             DateTime.Now.AddDays(30),
-            DateTime.Now.AddDays(90));
+            DateTime.Now.AddDays(20));
 
         // Act
-        var result = await courseService.Handle(createCourseCommand, default);
+        var result = await _handler.Handle(createCourseCommand, default);
 
         // Assert
         result.IsError.Should().BeTrue();
-        // Add more assertions based on your validation error handling
+        result.FirstError.Type.Should().Be(ErrorType.Validation);
+        result.FirstError.Code.Should().Be(Errors.Courses.MaxStudentsInvalidFormat.Code);
+        result.FirstError.Description.Should().Be(Errors.Courses.MaxStudentsInvalidFormat.Description);
     }
 }
