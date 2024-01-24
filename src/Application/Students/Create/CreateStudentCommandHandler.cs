@@ -7,7 +7,6 @@ public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand,
 {
     private readonly IStudentRepository _studentRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<CreateStudentCommand> _validator;
 
     public CreateStudentCommandHandler(IStudentRepository studentRepository, IUnitOfWork unitOfWork)
     {

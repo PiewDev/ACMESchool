@@ -4,6 +4,7 @@ using Infrastructure.Common.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Students;
+using Infrastructure.Courses;
 
 namespace Infrastructure;
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
     {
         services.AddPersistence(configuration);
         services.AddStudentInfraestructure(configuration);
+        services.AddCourseInfraestructure(configuration);
         return services;
     }
 

@@ -1,4 +1,5 @@
 using Application.Data;
+using Domain.Courses;
 using Domain.Primitives;
 using Domain.Students;
 
@@ -8,6 +9,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 {
     private readonly IPublisher _publisher;
 
+    public DbSet<Course> Courses { get; set; }
     public DbSet<Student> Students {get; set;}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

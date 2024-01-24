@@ -2,7 +2,7 @@ namespace Domain.ValueObjects;
 
 public partial record Address
 {
-    public Address(string country, string line1, string line2, string city, string state, string zipCode)
+    private Address(string country, string line1, string line2, string city, string state, string zipCode)
     {
         Country = country;
         Line1 = line1;
