@@ -26,6 +26,7 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, E
         }
 
         Course course = new(
+            new CourseId(Guid.NewGuid()),
             command.Name,
             maxStudents,
             command.RegistrationFee,

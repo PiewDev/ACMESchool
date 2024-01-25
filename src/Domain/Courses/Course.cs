@@ -16,9 +16,9 @@ public class Course : AggregateRoot
     private readonly List<StudentEnrollment> _enrollments = new List<StudentEnrollment>();
     public IReadOnlyList<StudentEnrollment> Enrollments => _enrollments.AsReadOnly();
 
-    public Course(string name, MaxStudents maxStudents, Money registrationFee, CourseDuration courseDuration)
+    public Course(CourseId id, string name, MaxStudents maxStudents, Money registrationFee, CourseDuration courseDuration)
     {
-        Id = new CourseId(Guid.NewGuid());
+        Id = id;
         Name = name;
         MaxStudents = maxStudents;
         RegistrationFee = registrationFee;

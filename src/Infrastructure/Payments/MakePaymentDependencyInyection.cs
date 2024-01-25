@@ -8,7 +8,7 @@ public static class MakePaymentDependecyInjection
 {
     public static IServiceCollection AddMakePaymentInfraestructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IPaymentRepository, MakePaymentRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
 
         return services;
     }

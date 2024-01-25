@@ -13,4 +13,6 @@ public class StudentRepository : IStudentRepository
     }
 
     public void Add(Student student) => _context.Students.Add(student);
+
+    public async Task<Student> GetByIdAsync(StudentId id) => await _context.Students.SingleOrDefaultAsync(c => c.Id == id);
 }

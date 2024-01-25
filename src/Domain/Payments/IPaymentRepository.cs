@@ -1,4 +1,7 @@
-﻿namespace Domain.Payments;
+﻿using Domain.Courses;
+
+namespace Domain.Payments;
 public interface IPaymentRepository
 {
+    void Add(Payment course);
 }

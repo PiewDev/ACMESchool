@@ -1,5 +1,6 @@
 using Application.Data;
 using Domain.Courses;
+using Domain.Payments;
 using Domain.Primitives;
 using Domain.Students;
 
@@ -9,6 +10,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 {
     private readonly IPublisher _publisher;
 
+    public DbSet<Payment> Payments { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Student> Students {get; set;}
 

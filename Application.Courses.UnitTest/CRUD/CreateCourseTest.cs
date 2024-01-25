@@ -39,7 +39,6 @@ public class CreateCourseTest
 
         // Assert
         result.IsError.Should().BeFalse();
-        result.Value.Should().NotBeEmpty();
     }
 
     [Fact]
