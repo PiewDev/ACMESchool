@@ -1,5 +1,6 @@
 ﻿using Domain.Courses.ValueObjects;
 using Domain.Primitives;
+using Domain.StudentEnrollments;
 using Domain.Students;
 using Domain.ValueObjects;
 

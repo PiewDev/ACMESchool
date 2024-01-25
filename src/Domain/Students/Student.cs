@@ -1,4 +1,5 @@
 ﻿using Domain.Primitives;
+using Domain.StudentEnrollments;
 using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ public sealed class Student : AggregateRoot
     public PhoneNumber PhoneNumber { get; private set; }
     public Address Address { get; private set; }
     public bool Active { get; private set; }
+    public List<StudentEnrollment> Enrollments { get; private set; }
 
     public static Student UpdateCustomer(Guid id, string name, string lastName, string email, PhoneNumber phoneNumber, Address address)
     {
