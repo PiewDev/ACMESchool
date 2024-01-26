@@ -2,6 +2,7 @@ using Application.Data;
 using Domain.Courses;
 using Domain.Payments;
 using Domain.Primitives;
+using Domain.StudentEnrollments;
 using Domain.Students;
 
 namespace Infrastructure.Common.Persistence;
@@ -12,7 +13,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
     public DbSet<Payment> Payments { get; set; }
     public DbSet<Course> Courses { get; set; }
-    public DbSet<Student> Students {get; set;}
+    public DbSet<Student> Students {get; set; }
+    public DbSet<StudentEnrollment> StudentEnrollments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

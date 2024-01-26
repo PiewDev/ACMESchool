@@ -3,7 +3,7 @@ using Domain.StudentEnrollments;
 using Domain.Students;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.StudentsEnrollment;
+namespace Infrastructure.StudentEnrollments;
 public class StudentEnrollmentConfiguration : IEntityTypeConfiguration<StudentEnrollment>
 {
     public void Configure(EntityTypeBuilder<StudentEnrollment> builder)

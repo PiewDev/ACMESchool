@@ -24,12 +24,17 @@ public class Course : AggregateRoot
         RegistrationFee = registrationFee;
         CourseDuration = courseDuration;
     }
-
-
-    public void EnrollStudent(StudentId studentId)
+    public bool IsFull()
     {
-        _enrollments.Add(new StudentEnrollment(studentId, Id));
+        return Enrollments.Count >= MaxStudents.Value;
     }
-
-
+    public bool HasStudentEnrolled(StudentId studentId)
+    {
+        return Enrollments.Any(e => e.StudentId == studentId);
+    }
+    public ErrorOr<StudentEnrollment> AddEnrollment(StudentEnrollment enrollment)
+    {
+        _enrollments.Add(enrollment);
+        return enrollment;
+    }
 }

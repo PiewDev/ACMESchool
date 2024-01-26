@@ -12,11 +12,13 @@ public class StudentEnrollment
     public Student Student { get; private set; }
     public Course Course { get; private set; }
 
-    public StudentEnrollment(StudentId studentId, CourseId courseId)
+    public StudentEnrollment(Guid id, Student student, Course course)
     {
         Id = new StudentEnrollmentId(Guid.NewGuid());
-        StudentId = studentId;
-        CourseId = courseId;
+        Student = student;
+        Course = course;
+        StudentId = student.Id;
+        CourseId = course.Id;
         EnrollmentDate = DateTime.UtcNow;
     }
     private StudentEnrollment() { }

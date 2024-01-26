@@ -2,9 +2,12 @@ using Application.Payments.MakePayments;
 using Domain.Courses;
 using Domain.Courses.ValueObjects;
 using Domain.Payments;
+using Domain.Payments.Events;
+using Domain.StudentEnrollments;
 using Domain.Students;
 using Domain.ValueObjects;
 using ErrorOr;
+using MediatR;
 using Errors = Domain.Payments.Errors;
 
 namespace Application.Payments.UnitTest;
@@ -15,6 +18,7 @@ public class MakePaymentTest
     private readonly Mock<IPaymentRepository> _mockPaymentRepository;
     private readonly Mock<IUnitOfWork> _mockUnitOfWork;
     private readonly Mock<IPaymentGateway> _mockPaymentGateWay;
+    private readonly Mock<IPublisher> _mockPublisher;
     private readonly MakePaymentCommandHandler _handler;
 
     public MakePaymentTest()
@@ -24,12 +28,14 @@ public class MakePaymentTest
         _mockPaymentRepository = new Mock<IPaymentRepository>();
         _mockUnitOfWork = new Mock<IUnitOfWork>();
         _mockPaymentGateWay = new Mock<IPaymentGateway>();
+        _mockPublisher = new Mock<IPublisher>();
         _handler = new MakePaymentCommandHandler(
             _mockPaymentRepository.Object,
             _mockstudentRepository.Object,
             _mockcourseRepository.Object,
             _mockUnitOfWork.Object,
-            _mockPaymentGateWay.Object);
+            _mockPaymentGateWay.Object,
+            _mockPublisher.Object);
     }
 
     private void SetupMocks(Guid studentId, Guid courseId)
@@ -211,5 +217,73 @@ public class MakePaymentTest
 
         // Assert
         result.IsError.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task SavePayment_ShouldPublishPaymentMadeEvent()
+    {
+        // Arrange
+        var command = new MakePaymentCommand(
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            new Money(100, CurrencyCode.ARS),
+            "valid-card-token"
+            );
+        SetupMocks(command.StudentId, command.CourseId);
+
+        // Act
+        ErrorOr<Guid> result = await _handler.Handle(command, default);
+
+        // Assert
+        _mockPublisher.Verify(e => e.Publish(It.IsAny<PaymentMadeEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task HandlePayment_WithCourseFull_ShouldReturnValidationError()
+    {
+        // Arrange
+        var command = new MakePaymentCommand(
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            new Money(100, CurrencyCode.ARS),
+            "valid-card-token"
+            );
+        
+        SetupMocks(command.StudentId, command.CourseId);
+        
+        Student studentEnrolled = new(
+                 new StudentId(Guid.NewGuid()),
+                 "Juan",
+                 "Pereira",
+                 "pe@gmail.com",
+                 PhoneNumber.Create("342-58784431"),
+                 Address.Create("Argentina", "Calle falsa 123", "dto 2", "Santa Fe", "Santa Fe", "3000"));
+        
+        _mockcourseRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<CourseId>()))
+           .ReturnsAsync((CourseId mockCourseId) =>
+           {
+               if (mockCourseId.Equals(new CourseId(command.CourseId)))
+               {
+                   Course course = new(
+                        new CourseId(command.CourseId),
+                        "Basics DDD",
+                        MaxStudents.Create(1),
+                        new Money(100, CurrencyCode.ARS),
+                        CourseDuration.Create(DateTime.Now.AddDays(30), DateTime.Now.AddDays(40)));
+                   course.AddEnrollment(new StudentEnrollment(Guid.NewGuid(), studentEnrolled, course));
+                   return course;
+               }
+               else
+               {
+                   return null;
+               }
+
+           });
+        // Act
+        ErrorOr<Guid> result = await _handler.Handle(command, default);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.Errors.Should().ContainSingle().Which.Code.Should().Be(Errors.Payments.CourseIsFull.Code);
     }
 }

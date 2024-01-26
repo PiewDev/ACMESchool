@@ -11,6 +11,8 @@ public static partial class Errors
             Error.Validation("Payment.Course.NotFound", "Course not found.");
         public static Error CourseFeeNotEquals =>
             Error.Validation("CourseFeeNotEquals", "The provided payment amount does not match the course registration fee.");
+        public static Error CourseIsFull =>
+            Error.Validation("CourseIsFull", "Course is full.");
     }
 }
 
