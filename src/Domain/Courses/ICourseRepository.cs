@@ -1,5 +1,4 @@
 ﻿using Domain.Courses.ValueObjects;
-using Domain.Students;
 
 namespace Domain.Courses;
 public interface ICourseRepository

@@ -1,6 +1,5 @@
-﻿using Domain.Payments.Events;
-using Domain.StudentEnrollments;
-using Microsoft.Extensions.Logging;
+﻿using Domain.Enrollments;
+using Domain.Payments.Events;
 
 namespace Application.Enrollments.EventsHandler;
 

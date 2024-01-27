@@ -1,7 +1,7 @@
 ﻿using Application.Enrollments.EventsHandler;
 using Domain.Courses.ValueObjects;
 using Domain.Payments.Events;
-using Domain.StudentEnrollments;
+using Domain.Enrollments;
 using Domain.Students;
 
 namespace Application.Enrollments.UnitTest;

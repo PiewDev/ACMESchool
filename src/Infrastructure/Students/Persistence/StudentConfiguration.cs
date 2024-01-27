@@ -33,7 +33,7 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder.OwnsOne(c => c.Address, addressBuilder =>
         {
 
-            addressBuilder.Property(a => a.Country).HasMaxLength(3);
+            addressBuilder.Property(a => a.Country).HasMaxLength(10);
 
             addressBuilder.Property(a => a.Line1).HasMaxLength(20);
 

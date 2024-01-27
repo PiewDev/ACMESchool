@@ -1,7 +1,5 @@
 ﻿using Domain.Courses;
-using Domain.Students;
 using Infrastructure.Courses.Persistence;
-using Infrastructure.Students.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

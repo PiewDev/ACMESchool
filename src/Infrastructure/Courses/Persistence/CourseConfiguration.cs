@@ -2,7 +2,6 @@
 using Domain.Courses.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace Infrastructure.Courses.Persistence;
 
 public class CourseConfiguration : IEntityTypeConfiguration<Course>

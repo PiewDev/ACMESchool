@@ -1,12 +1,8 @@
 ﻿using Application.Courses.Create;
-using Application.Students.Create;
 using Domain.Courses;
 using Domain.Primitives;
-using Domain.Students;
 using Domain.ValueObjects;
 using ErrorOr;
-using Moq;
-using System.Xml.Linq;
 using Errors = Domain.Courses.Errors;
 
 namespace Application.Courses.UnitTests.CRUD;
@@ -27,7 +23,7 @@ public class CreateCourseTest
     public async Task CreateCourse_WithValidData_ShouldReturnCourseId()
     {
         // Arrange   
-        var createCourseCommand = new CreateCourseCommand(
+        CreateCourseCommand createCourseCommand = new(
             "Introduction to DDD",
             50,
             new Money(100, CurrencyCode.ARS),

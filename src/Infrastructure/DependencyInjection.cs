@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Students;
 using Infrastructure.Courses;
-
+using Infrastructure.Payments;
 namespace Infrastructure;
 
 public static class DependencyInjection
@@ -14,14 +14,18 @@ public static class DependencyInjection
     {
         services.AddPersistence(configuration);
         services.AddStudentInfraestructure(configuration);
-        services.AddCourseInfraestructure(configuration);
+        services.AddCourseInfraestructure(configuration); 
+        services.AddPaymentInfraestructure(configuration);
         return services;
     }
 
     private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
 
-        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
+        services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.UseInMemoryDatabase("ACMEMemoryDB");
+        });
 
         services.AddScoped<IApplicationDbContext>(sp => 
                 sp.GetRequiredService<ApplicationDbContext>());

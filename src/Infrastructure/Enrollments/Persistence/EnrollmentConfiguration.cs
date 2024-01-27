@@ -1,14 +1,12 @@
-﻿using Domain.Courses.ValueObjects;
-using Domain.StudentEnrollments;
-using Domain.Students;
+﻿using Domain.Enrollments;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.StudentEnrollments;
-public class StudentEnrollmentConfiguration : IEntityTypeConfiguration<StudentEnrollment>
+namespace Infrastructure.Enrollments.Persistence;
+public class EnrollmentConfiguration : IEntityTypeConfiguration<StudentEnrollment>
 {
     public void Configure(EntityTypeBuilder<StudentEnrollment> builder)
     {
-        builder.ToTable("StudentEnrollments");
+        builder.ToTable("Enrollments");
 
         builder.HasKey(se => se.Id);
 

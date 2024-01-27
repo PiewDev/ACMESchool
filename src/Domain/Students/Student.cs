@@ -1,14 +1,8 @@
 ﻿using Domain.Courses;
 using Domain.Courses.ValueObjects;
+using Domain.Enrollments;
 using Domain.Primitives;
-using Domain.StudentEnrollments;
 using Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Students;
 public sealed class Student : AggregateRoot

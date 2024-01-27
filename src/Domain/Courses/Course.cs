@@ -1,6 +1,6 @@
 ﻿using Domain.Courses.ValueObjects;
 using Domain.Primitives;
-using Domain.StudentEnrollments;
+using Domain.Enrollments;
 using Domain.Students;
 using Domain.ValueObjects;
 
@@ -16,6 +16,10 @@ public class Course : AggregateRoot
     private readonly List<StudentEnrollment> _enrollments = new List<StudentEnrollment>();
     public IReadOnlyList<StudentEnrollment> Enrollments => _enrollments.AsReadOnly();
 
+    private Course()
+    {
+            
+    }
     public Course(CourseId id, string name, MaxStudents maxStudents, Money registrationFee, CourseDuration courseDuration)
     {
         Id = id;

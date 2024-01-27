@@ -3,7 +3,7 @@ using Domain.Courses;
 using Domain.Courses.ValueObjects;
 using Domain.Payments;
 using Domain.Payments.Events;
-using Domain.StudentEnrollments;
+using Domain.Enrollments;
 using Domain.Students;
 using Domain.ValueObjects;
 using ErrorOr;

@@ -2,7 +2,7 @@
 using Domain.Courses.ValueObjects;
 using Domain.Students;
 
-namespace Domain.StudentEnrollments;
+namespace Domain.Enrollments;
 public class StudentEnrollment
 {
     public StudentEnrollmentId Id { get; private set; }

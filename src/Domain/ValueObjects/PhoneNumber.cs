@@ -8,7 +8,7 @@ public partial record PhoneNumber
 
     public static PhoneNumber? Create(string value)
     {
-        if(string.IsNullOrEmpty(value) || !PhoneNumberRegex().IsMatch(value))
+        if (string.IsNullOrEmpty(value) || !PhoneNumberRegex().IsMatch(value))
         {
             return null;
         }

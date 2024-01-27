@@ -1,8 +1,4 @@
-﻿using ErrorOr;
-
-namespace Domain.Students;
-
-
+﻿namespace Domain.Students;
 public static partial class Errors
 {
     public static class Student
@@ -15,6 +11,9 @@ public static partial class Errors
 
         public static Error AddressWithBadFormat =>
             Error.Validation("Student.Address", "Address is not valid.");
+
+        public static Error InvalidDateRangeError =>
+            Error.Validation("InvalidDateRangeError", "Date range is not valid.");
     }
 
 }

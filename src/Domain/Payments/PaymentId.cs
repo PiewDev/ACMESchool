@@ -1,8 +1,2 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Payments;
+﻿namespace Domain.Payments;
 public record PaymentId(Guid Value);

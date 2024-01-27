@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.StudentEnrollments;
+namespace Domain.Enrollments;
 public static partial class Errors
 {
     public static class StudentEnrollment

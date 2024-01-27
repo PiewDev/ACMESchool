@@ -1,7 +1,5 @@
 ﻿using Application.Data;
-using Domain.Courses;
 using Domain.Payments;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Payments.Persistence;
 public class PaymentRepository : IPaymentRepository

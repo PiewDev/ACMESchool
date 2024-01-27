@@ -1,8 +1,6 @@
 ﻿using Application.Data;
 using Domain.Courses;
 using Domain.Courses.ValueObjects;
-using Domain.Students;
-using Infrastructure.Common.Persistence;
 
 namespace Infrastructure.Courses.Persistence;
 public class CourseRepository : ICourseRepository

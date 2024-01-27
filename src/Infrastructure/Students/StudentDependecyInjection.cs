@@ -1,7 +1,4 @@
-﻿using Application.Data;
-using Domain.Primitives;
-using Domain.Students;
-using Infrastructure.Common.Persistence;
+﻿using Domain.Students;
 using Infrastructure.Students.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
