@@ -18,7 +18,7 @@ public class StudentRepository : IStudentRepository
 
     public async Task<List<Student>> GetStudentsWithCoursesInDateRange(DateTime startDate, DateTime endDate)
     {
-        var studentsWithCourses = await _context.Students
+        List<Student>? studentsWithCourses = await _context.Students
             .Include(s => s.Enrollments)
                 .ThenInclude(se => se.Course)
             .Where(s => s.Enrollments.Any(se =>

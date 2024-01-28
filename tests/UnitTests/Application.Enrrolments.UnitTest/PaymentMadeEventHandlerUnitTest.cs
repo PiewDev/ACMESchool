@@ -4,15 +4,16 @@ using Domain.Payments.Events;
 using Domain.Enrollments;
 using Domain.Students;
 using Domain.Students.ValueObjects;
+using MediatR;
 
 namespace Application.Enrollments.UnitTest;
 public class PaymentMadeEventHandlerUnitTest
 {
-    private readonly Mock<IEnrollmentService> _mockEnrollmentService;
+    private readonly Mock<IMediator> _mockMediator;
 
     public PaymentMadeEventHandlerUnitTest()
     {
-        _mockEnrollmentService = new Mock<IEnrollmentService>();
+        _mockMediator = new Mock<IMediator>();
     }
 
     [Fact]
@@ -21,13 +22,13 @@ public class PaymentMadeEventHandlerUnitTest
         // Arrange
         PaymentMadeEvent paymentMadeEvent = new(Guid.NewGuid(), new StudentId(Guid.NewGuid()), new CourseId(Guid.NewGuid()));
 
-        var handler = new PaymentMadeEventHandler(_mockEnrollmentService.Object);
+        PaymentMadeEventHandler handler = new(_mockMediator.Object);
 
         // Act
         await handler.Handle(paymentMadeEvent, CancellationToken.None);
-
+      
         // Assert
-        _mockEnrollmentService.Verify(service => service.EnrollStudentInCourse(paymentMadeEvent.StudentId, paymentMadeEvent.CourseId), Times.Once);
+        _mockMediator.Verify(m => m.Send(It.IsAny<EnrollmentStudentInCourseCommand>(), CancellationToken.None), Times.Once);
 
     }
 }

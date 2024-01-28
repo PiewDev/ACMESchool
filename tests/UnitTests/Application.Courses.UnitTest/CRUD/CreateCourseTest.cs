@@ -32,7 +32,7 @@ public class CreateCourseTest
             DateTime.Now.AddDays(90));
 
         // Act
-        var result = await _handler.Handle(createCourseCommand, default);
+        ErrorOr<Guid> result = await _handler.Handle(createCourseCommand, default);
 
         // Assert
         result.IsError.Should().BeFalse();
@@ -50,7 +50,7 @@ public class CreateCourseTest
             DateTime.Now.AddDays(20));
 
         // Act
-        var result = await _handler.Handle(createCourseCommand, default);
+        ErrorOr<Guid> result = await _handler.Handle(createCourseCommand, default);
 
         // Assert
         result.IsError.Should().BeTrue();
@@ -62,10 +62,6 @@ public class CreateCourseTest
     public async Task CreateCourse_WithInvalidMaxStudents_ShouldReturnValidationError()
     {
         // Arrange
-        var courseRepositoryMock = new Mock<ICourseRepository>();
-        var unitOfWorkMock = new Mock<IUnitOfWork>();
-        var courseService = new CreateCourseCommandHandler(courseRepositoryMock.Object, unitOfWorkMock.Object);
-
         CreateCourseCommand createCourseCommand = new(
             "Introduction to DDD",
             0,
@@ -74,7 +70,7 @@ public class CreateCourseTest
             DateTime.Now.AddDays(20));
 
         // Act
-        var result = await _handler.Handle(createCourseCommand, default);
+        ErrorOr<Guid> result = await _handler.Handle(createCourseCommand, default);
 
         // Assert
         result.IsError.Should().BeTrue();

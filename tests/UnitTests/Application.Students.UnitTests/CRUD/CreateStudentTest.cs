@@ -22,7 +22,7 @@ public class CreateStudentTest
         CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "342-5787327", "Country", "Line1", "Line2", "City", "State", "ZipCode");
 
         // Act
-        var result = await _handler.Handle(command, default);
+        ErrorOr<Guid> result = await _handler.Handle(command, default);
 
         // Assert
         result.IsError.Should().BeFalse();
@@ -37,7 +37,7 @@ public class CreateStudentTest
         CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "1213", "Country", "Line1", "Line2", "City", "State", "ZipCode");
 
         //Act
-        var result = await _handler.Handle(command, default);
+        ErrorOr<Guid> result = await _handler.Handle(command, default);
 
         //Assert
         result.IsError.Should().BeTrue();
@@ -52,7 +52,7 @@ public class CreateStudentTest
         CreateStudentCommand command = new("Gonzalo", "Fernandez", "gonz96@sc.com", "123-4567890", "", "Line1", "Line2", "City", "State", "ZipCode");
 
         // Act
-        var result = await _handler.Handle(command, default);
+        ErrorOr<Guid> result = await _handler.Handle(command, default);
 
         // Assert
         result.IsError.Should().BeTrue();

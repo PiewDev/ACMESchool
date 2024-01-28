@@ -4,13 +4,13 @@ using Web.API;
 using Web.API.Extensions;
 using Web.API.Middlewares;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPresentation()
                 .AddInfrastructure(builder.Configuration)
                 .AddApplication();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

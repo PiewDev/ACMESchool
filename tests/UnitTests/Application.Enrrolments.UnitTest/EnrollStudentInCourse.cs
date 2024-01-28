@@ -5,6 +5,7 @@ using Domain.Students;
 using Domain.ValueObjects;
 using Domain.Common.ValueObjects;
 using Domain.Students.ValueObjects;
+using ErrorOr;
 
 namespace Application.Enrollments.UnitTest;
 public class EnrollStudentInCourse
@@ -69,13 +70,14 @@ public class EnrollStudentInCourse
 
         SetupMocks(studentId.Value, courseId.Value);
 
-        var enrollmentService = new EnrollmentService(
+        EnrollmentStudentInCourseCommandHandler enrollmentHandler = new (
             _mockStudentRepository.Object,
             _mockCourseRepository.Object,
             _mockUnitOfWork.Object);
 
+        EnrollmentStudentInCourseCommand command = new(studentId.Value, courseId.Value);
         // Act
-        var result = await enrollmentService.EnrollStudentInCourse(studentId, courseId);
+        ErrorOr<Guid> result = await enrollmentHandler.Handle(command, default);
 
         // Assert
         result.Should().NotBeNull();
@@ -91,14 +93,16 @@ public class EnrollStudentInCourse
 
         _mockStudentRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<StudentId>()))
             .ReturnsAsync((StudentId mockStudentId) => null);
-
-        var enrollmentService = new EnrollmentService(
+        
+        EnrollmentStudentInCourseCommandHandler enrollmentHandler = new(
             _mockStudentRepository.Object,
             _mockCourseRepository.Object,
             _mockUnitOfWork.Object);
 
+        EnrollmentStudentInCourseCommand command = new(studentId.Value, courseId.Value);
+
         // Act
-        var result = await enrollmentService.EnrollStudentInCourse(studentId, courseId);
+        ErrorOr<Guid> result = await enrollmentHandler.Handle(command, default);
 
         // Assert
         result.Should().NotBeNull();

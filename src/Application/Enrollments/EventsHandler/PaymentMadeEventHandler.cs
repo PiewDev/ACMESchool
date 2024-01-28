@@ -5,17 +5,17 @@ namespace Application.Enrollments.EventsHandler;
 
 public class PaymentMadeEventHandler : INotificationHandler<PaymentMadeEvent>
 {
-    private readonly IEnrollmentService _enrollmentService;
+    private readonly IMediator _mediator;
 
-    public PaymentMadeEventHandler(IEnrollmentService enrollmentService)
+    public PaymentMadeEventHandler(IMediator mediator)
     {
-        _enrollmentService = enrollmentService;
+        _mediator = mediator;
 
     }
 
     public async Task Handle(PaymentMadeEvent notification, CancellationToken cancellationToken)
     {
-        var result = await _enrollmentService.EnrollStudentInCourse(notification.StudentId, notification.CourseId);
+        ErrorOr<Guid> result = await _mediator.Send(new EnrollmentStudentInCourseCommand(notification.StudentId.Value, notification.CourseId.Value));
     }
 
 }

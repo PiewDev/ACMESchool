@@ -1,28 +1,30 @@
-﻿using Domain.Courses;
+﻿
+using Domain.Common;
+using Domain.Courses;
 using Domain.Courses.ValueObjects;
 using Domain.Enrollments;
-using Domain.Common;
 using Domain.Students;
-using Errors = Domain.Enrollments.Errors;
 using Domain.Students.ValueObjects;
+using Errors = Domain.Enrollments.Errors;
 
 namespace Application.Enrollments;
-public class EnrollmentService : IEnrollmentService
+public class EnrollmentStudentInCourseCommandHandler : IRequestHandler<EnrollmentStudentInCourseCommand, ErrorOr<Guid>>
 {
     private readonly IStudentRepository _studentRepository;
     private readonly ICourseRepository _courseRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-
-    public EnrollmentService(IStudentRepository studentRepository, ICourseRepository courseRepository, IUnitOfWork unitOfWork)
+    public EnrollmentStudentInCourseCommandHandler(IStudentRepository studentRepository, ICourseRepository courseRepository, IUnitOfWork unitOfWork)
     {
         _studentRepository = studentRepository;
         _courseRepository = courseRepository;
         _unitOfWork = unitOfWork;
     }
-
-    public async Task<ErrorOr<Guid>> EnrollStudentInCourse(StudentId studentId, CourseId courseId)
+    public async Task<ErrorOr<Guid>> Handle(EnrollmentStudentInCourseCommand command, CancellationToken cancellationToken)
     {
+        StudentId studentId = new(command.StudentId);
+        CourseId courseId = new(command.CourseId);
+
         if (await _studentRepository.GetByIdAsync(studentId) is not Student updatedStudent)
         {
             return Errors.StudentEnrollment.StudentNotFound;

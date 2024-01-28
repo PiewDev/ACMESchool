@@ -5,20 +5,20 @@ using Application.Students.GetStudentWithCoursesInDataRange;
 using Domain.Common;
 using Domain.Common.ValueObjects;
 using Domain.Students;
-using Domain.ValueObjects;
 using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Students.UnitTest.GetStudentWithCoursesInDataRange;
 public class GetStudentsWithCoursesInDataRangeEndToEndTest
 {
     [Fact]
-    public async Task GetStudentsWithCoursesInDataRangeIntegrationTest_ShouldWork()
-    {        
-        var app = ProgramTest.BuildApplication();
+    public async Task GetStudentsWithCoursesInDataRange()
+    {
+        WebApplication app = ProgramTest.BuildApplication();
 
-        using (var scope = app.Services.CreateScope())
+        using (IServiceScope scope = app.Services.CreateScope())
         {
             //Arrange
 

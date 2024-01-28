@@ -43,7 +43,7 @@ public sealed class Student : AggregateRoot
         {
             return Errors.Student.CourseNullReference;
         }
-        var enrollment = new StudentEnrollment(Guid.NewGuid(), this, course);
+        StudentEnrollment enrollment = new(Guid.NewGuid(), this, course);
         _enrollments.Add(enrollment);
         return enrollment;
     }

@@ -25,7 +25,7 @@ public class CustomProblemDetailsFactory : ProblemDetailsFactory
     {
         statusCode ??= 500;
 
-        var problemDetails = new ProblemDetails
+        ProblemDetails problemDetails = new()
         {
             Status = statusCode,
             Title = title,
@@ -55,7 +55,7 @@ public class CustomProblemDetailsFactory : ProblemDetailsFactory
 
         statusCode ??= 400;
 
-        var problemDetails = new ValidationProblemDetails(modelStateDictionary)
+        ValidationProblemDetails problemDetails = new(modelStateDictionary)
         {
             Status = statusCode,
             Type = type,
@@ -84,13 +84,13 @@ public class CustomProblemDetailsFactory : ProblemDetailsFactory
             problemDetails.Type ??= clientErrorData.Link;
         }
 
-        var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
+        string? traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
         if (traceId != null)
         {
             problemDetails.Extensions["traceId"] = traceId;
         }
 
-        var errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
+        List<Error>? errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
 
         if (errors is not null)
         {
