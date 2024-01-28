@@ -4,7 +4,9 @@ using Application.Students.Create;
 using Application.Students.GetStudentWithCoursesInDataRange;
 using Domain.Common;
 using Domain.Common.ValueObjects;
+using Domain.Students;
 using Domain.ValueObjects;
+using ErrorOr;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
