@@ -1,5 +1,6 @@
-﻿using Application.Data;
+﻿using Application.Common.Data;
 using Domain.Students;
+using Domain.Students.ValueObjects;
 
 namespace Infrastructure.Students.Persistence;
 public class StudentRepository : IStudentRepository

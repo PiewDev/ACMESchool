@@ -1,6 +1,7 @@
-﻿using Domain.Courses.ValueObjects;
-using Domain.Students;
-using Domain.ValueObjects;
+﻿using Domain.Common.ValueObjects;
+using Domain.Courses.ValueObjects;
+using Domain.Payments.ValueObjects;
+using Domain.Students.ValueObjects;
 
 namespace Domain.Payments;
 public class Payment

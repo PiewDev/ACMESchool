@@ -1,4 +1,4 @@
 global using Xunit;
 global using Moq;
-global using Domain.Primitives;
+global using Domain.Common;
 global using FluentAssertions;

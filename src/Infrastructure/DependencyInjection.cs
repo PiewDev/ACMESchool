@@ -1,11 +1,11 @@
-using Application.Data;
-using Domain.Primitives;
+using Domain.Common;
 using Infrastructure.Common.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Students;
 using Infrastructure.Courses;
 using Infrastructure.Payments;
+using Application.Common.Data;
 namespace Infrastructure;
 
 public static class DependencyInjection

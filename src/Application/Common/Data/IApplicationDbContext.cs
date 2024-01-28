@@ -3,7 +3,7 @@ using Domain.Payments;
 using Domain.Students;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Data;
+namespace Application.Common.Data;
 
 public interface IApplicationDbContext
 {

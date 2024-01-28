@@ -2,13 +2,14 @@
 using Application.Payments.MakePayments;
 using Application.Students.Create;
 using Application.Students.GetStudentWithCoursesInDataRange;
-using Domain.Primitives;
+using Domain.Common;
+using Domain.Common.ValueObjects;
 using Domain.ValueObjects;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Students.UnitTest.GetStudentWithCoursesInDataRange;
-public class GetStudentsWithCoursesInDataRangeIntegrationTest
+public class GetStudentsWithCoursesInDataRangeEndToEndTest
 {
     [Fact]
     public async Task GetStudentsWithCoursesInDataRangeIntegrationTest_ShouldWork()

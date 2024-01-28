@@ -1,6 +1,8 @@
 ﻿using Domain.Courses;
 using Domain.Courses.ValueObjects;
+using Domain.Enrollments.ValueObjects;
 using Domain.Students;
+using Domain.Students.ValueObjects;
 
 namespace Domain.Enrollments;
 public class StudentEnrollment

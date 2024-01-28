@@ -1,4 +1,4 @@
-﻿using Application.Data;
+﻿using Application.Common.Data;
 using Domain.Payments;
 
 namespace Infrastructure.Payments.Persistence;

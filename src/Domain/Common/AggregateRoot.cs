@@ -1,4 +1,4 @@
-namespace Domain.Primitives;
+namespace Domain.Common;
 
 public abstract class AggregateRoot 
 {

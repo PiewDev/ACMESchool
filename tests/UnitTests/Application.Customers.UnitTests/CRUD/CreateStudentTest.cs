@@ -1,5 +1,5 @@
 ﻿using Application.Students.Create;
-using Domain.Primitives;
+using Domain.Common;
 
 namespace Application.Students.UnitTests.CRUD;
 public class CreateStudentTest

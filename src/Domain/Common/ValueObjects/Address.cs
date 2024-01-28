@@ -1,4 +1,4 @@
-namespace Domain.ValueObjects;
+namespace Domain.Common.ValueObjects;
 
 public partial record Address
 {

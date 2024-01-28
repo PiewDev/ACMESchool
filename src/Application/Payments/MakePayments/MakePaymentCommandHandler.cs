@@ -2,9 +2,11 @@
 using Domain.Courses.ValueObjects;
 using Domain.Payments;
 using Domain.Payments.Events;
-using Domain.Primitives;
+using Domain.Payments.ValueObjects;
+using Domain.Common;
 using Domain.Students;
 using Errors = Domain.Payments.Errors;
+using Domain.Students.ValueObjects;
 
 namespace Application.Payments.MakePayments;
 public class MakePaymentCommandHandler : IRequestHandler<MakePaymentCommand, ErrorOr<Guid>>

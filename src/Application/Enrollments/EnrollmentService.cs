@@ -1,9 +1,10 @@
 ﻿using Domain.Courses;
 using Domain.Courses.ValueObjects;
 using Domain.Enrollments;
-using Domain.Primitives;
+using Domain.Common;
 using Domain.Students;
 using Errors = Domain.Enrollments.Errors;
+using Domain.Students.ValueObjects;
 
 namespace Application.Enrollments;
 public class EnrollmentService : IEnrollmentService

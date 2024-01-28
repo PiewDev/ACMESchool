@@ -1,5 +1,5 @@
 ﻿using Domain.Courses.ValueObjects;
-using Domain.Students;
+using Domain.Students.ValueObjects;
 
 namespace Domain.Enrollments;
 public interface IEnrollmentService

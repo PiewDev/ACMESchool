@@ -1,8 +1,8 @@
 ﻿using Domain.Courses.ValueObjects;
-using Domain.Primitives;
+using Domain.Common;
 using Domain.Enrollments;
-using Domain.Students;
-using Domain.ValueObjects;
+using Domain.Common.ValueObjects;
+using Domain.Students.ValueObjects;
 
 namespace Domain.Courses;
 public class Course : AggregateRoot

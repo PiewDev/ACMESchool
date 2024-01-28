@@ -1,4 +1,4 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Common.ValueObjects;
 
 namespace Application.Courses.Create;
 public record CreateCourseCommand(

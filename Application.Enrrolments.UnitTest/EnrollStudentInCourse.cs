@@ -1,8 +1,10 @@
 using Domain.Courses;
 using Domain.Courses.ValueObjects;
-using Domain.Primitives;
+using Domain.Common;
 using Domain.Students;
 using Domain.ValueObjects;
+using Domain.Common.ValueObjects;
+using Domain.Students.ValueObjects;
 
 namespace Application.Enrollments.UnitTest;
 public class EnrollStudentInCourse

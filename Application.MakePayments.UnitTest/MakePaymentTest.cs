@@ -9,6 +9,8 @@ using Domain.ValueObjects;
 using ErrorOr;
 using MediatR;
 using Errors = Domain.Payments.Errors;
+using Domain.Common.ValueObjects;
+using Domain.Students.ValueObjects;
 
 namespace Application.Payments.UnitTest;
 public class MakePaymentTest

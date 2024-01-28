@@ -1,4 +1,6 @@
-﻿namespace Domain.Students;
+﻿using Domain.Students.ValueObjects;
+
+namespace Domain.Students;
 public interface IStudentRepository
 {
     void Add(Student student);

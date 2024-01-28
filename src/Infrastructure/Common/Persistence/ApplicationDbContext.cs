@@ -1,9 +1,9 @@
-using Application.Data;
 using Domain.Courses;
 using Domain.Enrollments;
 using Domain.Payments;
-using Domain.Primitives;
+using Domain.Common;
 using Domain.Students;
+using Application.Common.Data;
 
 namespace Infrastructure.Common.Persistence;
 

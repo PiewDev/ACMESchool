@@ -1,4 +1,5 @@
 ﻿using Domain.Students;
+using Domain.Students.ValueObjects;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

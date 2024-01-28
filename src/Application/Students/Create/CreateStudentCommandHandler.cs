@@ -1,5 +1,7 @@
-﻿using Domain.Primitives;
+﻿using Domain.Common;
+using Domain.Common.ValueObjects;
 using Domain.Students;
+using Domain.Students.ValueObjects;
 using Domain.ValueObjects;
 
 namespace Application.Students.Create;

@@ -1,6 +1,8 @@
 ﻿using Domain.Courses.ValueObjects;
 using Domain.Payments;
+using Domain.Payments.ValueObjects;
 using Domain.Students;
+using Domain.Students.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Payments.Persistence;

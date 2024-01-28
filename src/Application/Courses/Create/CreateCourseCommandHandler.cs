@@ -1,6 +1,6 @@
 ﻿using Domain.Courses;
 using Domain.Courses.ValueObjects;
-using Domain.Primitives;
+using Domain.Common;
 using Errors = Domain.Courses.Errors;
 
 namespace Application.Courses.Create;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Domain.Primitives;
+namespace Domain.Common;
 public enum CurrencyCode
 {
     [Description("Euros")]

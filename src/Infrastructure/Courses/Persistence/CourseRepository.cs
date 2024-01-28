@@ -1,4 +1,4 @@
-﻿using Application.Data;
+﻿using Application.Common.Data;
 using Domain.Courses;
 using Domain.Courses.ValueObjects;
 

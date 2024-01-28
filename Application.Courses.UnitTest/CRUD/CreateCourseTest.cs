@@ -1,9 +1,10 @@
 ﻿using Application.Courses.Create;
 using Domain.Courses;
-using Domain.Primitives;
+using Domain.Common;
 using Domain.ValueObjects;
 using ErrorOr;
 using Errors = Domain.Courses.Errors;
+using Domain.Common.ValueObjects;
 
 namespace Application.Courses.UnitTests.CRUD;
 

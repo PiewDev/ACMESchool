@@ -1,6 +1,6 @@
 ﻿using Domain.Courses.ValueObjects;
-using Domain.Primitives;
-using Domain.Students;
+using Domain.Common;
+using Domain.Students.ValueObjects;
 
 namespace Domain.Payments.Events;
 public record PaymentMadeEvent : DomainEvent

@@ -3,6 +3,7 @@ using Domain.Courses.ValueObjects;
 using Domain.Payments.Events;
 using Domain.Enrollments;
 using Domain.Students;
+using Domain.Students.ValueObjects;
 
 namespace Application.Enrollments.UnitTest;
 public class PaymentMadeEventHandlerUnitTest

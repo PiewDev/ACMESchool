@@ -1,4 +1,5 @@
 ﻿using Domain.Enrollments;
+using Domain.Enrollments.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Enrollments.Persistence;
